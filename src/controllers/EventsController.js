@@ -15,7 +15,8 @@ class EventsController {
 
   async store(req, res) {
     const schema = Yup.object().shape({
-      name_event: Yup.string().required()
+      name_event: Yup.string().required(),
+      date: Yup.date().required()
     });
 
     if (!(await schema.isValid(req.body))) {

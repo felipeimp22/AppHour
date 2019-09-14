@@ -39,8 +39,14 @@ class UserCompany {
     if (confirmExists) {
       return res.status(400).json({ error: 'Event already confirmated' });
     }
-
-    idEventExists.client_confirmation.push(idUser);
+    const object = {
+      id_user: idUser,
+      date_confirmed: new Date(),
+      flag: UserExists.flag,
+      vip: UserExists.vp,
+      xp: UserExists.xp
+    };
+    idEventExists.client_confirmation.push(object);
     await Events.updateOne(idEventExists);
     return res.json({
       message: 'Event confirmed',
@@ -68,11 +74,11 @@ class UserCompany {
       return res.status(400).json({ error: 'Error selecting user' });
     }
     const events = idEventExists.client_confirmation;
-    const confirmExists = events.find(user => user === idUser);
+    const confirmExists = events.find(user => user.id_user === idUser);
     if (!confirmExists) {
       return res.status(400).json({ error: 'Not event confirmated' });
     }
-    const removeConfirm = events.filter(user => user !== idUser);
+    const removeConfirm = events.filter(user => user.id_user !== idUser);
     idEventExists.client_confirmation = removeConfirm;
     await Events.updateOne(idEventExists);
     return res.json({

@@ -18,6 +18,22 @@ const UserSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   },
+  sex: {
+    type: String,
+    required: true
+  },
+  flag: {
+    type: String,
+    default: ''
+  },
+  xp: {
+    type: Number,
+    default: 0
+  },
+  vip: {
+    type: Array,
+    default: []
+  },
   deleted: {
     type: Boolean,
     default: false

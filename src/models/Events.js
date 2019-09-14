@@ -30,6 +30,10 @@ const EventsSchema = new mongoose.Schema({
     type: String,
     default: '-46.625290'
   },
+  date: {
+    type: Date,
+    required: true
+  },
   deleted: {
     type: Boolean,
     default: false
